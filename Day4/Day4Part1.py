@@ -38,13 +38,17 @@ for board in range(len(called)):
             for column in range(len(called[board][row])):
                 called[board][row][column] = 0
 
+vert = [[0 for i in range(0,len(bingo[0][0]))]] * len(bingo)
 for x in calls:
     for board in range(len(bingo)):
         for row in range(len(bingo[board])):
             for column in range(len(bingo[board][row])):
                 if bingo[board][row][column] == x:
                     called[board][row][column] = 1
-                winningboard = called[board][row] == [1,1,1,1,1] or called[board][:][column] == [1,1,1,1,1]
+                horizontalwin = called[board][row] == [1,1,1,1,1]
+                vert[board][column] += int(called[board][row][column])
+                verticalwin = vert[board][column] == 5
+                winningboard = horizontalwin or verticalwin
                 if winningboard:
                     winner = bingo[board]
                     winnercalls = called[board]
