@@ -79,7 +79,6 @@ for l in finalpairs:
             else:
                 for c in range(0,l.begin.x-l.end.x+1):
                     board[l.begin.x-c][l.begin.y-c] += 1
-    #TODO Diagonal Line parsing
 
 rotboard = copy.deepcopy(board)
 for y in range(len(board)):
