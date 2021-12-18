@@ -1,7 +1,7 @@
 import split
 import copy
 
-file = open("Day4/test.txt", "r")
+file = open("Day4/input.txt", "r")
 input = file.readlines()
 
 calls = split.split(input[0], ',')
@@ -42,29 +42,31 @@ verti = []
 for x in range(0,len(bingo[0][0])):
     verti.append(0)
 vert = []
+boardwins = []
+boardwinsum = 0
 for x in range(0,len(bingo)):
     vert.append(verti.copy())
+    boardwins.append(0)
 for x in calls:
+    winningboard = False
     for board in range(len(bingo)):
-        for row in range(len(bingo[board])):
-            for column in range(len(bingo[board][row])):
-                if bingo[board][row][column] == x:
-                    called[board][row][column] = 1
-                    vert[board][column] += int(called[board][row][column])
-                horizontalwin = called[board][row] == [1,1,1,1,1]
-                verticalwin = vert[board][column] == 5
-                winningboard = horizontalwin or verticalwin
-                if winningboard:
-                    #TODO: Check what boards have won, once all have won, submit the last one for score calc
-                    winner = bingo[board]
-                    winnercalls = called[board]
-                    winningcall = int(x)
-                    break
-            if winningboard:
-                break
-        if winningboard:
-            break
-    if winningboard:
+        if boardwins[board] != 1:
+            for row in range(len(bingo[board])):
+                for column in range(len(bingo[board][row])):
+                    if bingo[board][row][column] == x:
+                        called[board][row][column] = 1
+                        vert[board][column] += int(called[board][row][column])
+                    horizontalwin = called[board][row] == [1,1,1,1,1]
+                    verticalwin = vert[board][column] == 5
+                    winningboard = horizontalwin or verticalwin
+                    if winningboard and boardwins[board] != 1:
+                        
+                        winner = bingo[board]
+                        winnercalls = called[board]
+                        winningcall = int(x)
+                        boardwins[board] = 1
+                        boardwinsum += 1
+    if boardwinsum == len(bingo):
         break
 
 sum = 0
