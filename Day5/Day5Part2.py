@@ -10,7 +10,7 @@ class Pair:
     def __init__(self,begin,end) -> None:
         self.begin = begin
         self.end = end
-file = open("Day5/test.txt", "r")
+file = open("Day5/input.txt", "r")
 input = file.readlines()
 for x in range(len(input)):
     if input[x][len(input[x])-1] == '\n':
@@ -79,11 +79,6 @@ for l in finalpairs:
             else:
                 for c in range(0,l.begin.x-l.end.x+1):
                     board[l.begin.x-c][l.begin.y-c] += 1
-
-rotboard = copy.deepcopy(board)
-for y in range(len(board)):
-    for x in range(len(board[y])):
-        rotboard[y][x] = board[x][y]
 
 overlap = 0
 for x in board:
