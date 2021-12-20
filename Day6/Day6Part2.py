@@ -1,13 +1,6 @@
 import split
 
-def fishTick(lanternfish, fishtoadd, fish):
-    if lanternfish[fish] == 0:
-        lanternfish[fish] = 6
-        fishtoadd.append(8)
-    else:
-        lanternfish[fish] -= 1
-
-file = open("Day6/test.txt","r")
+file = open("Day6/input.txt","r")
 input = file.readlines()
 splitinput = split.split(input[0],',')
 lanternfish = []
@@ -16,13 +9,29 @@ for x in splitinput:
 total = []
 
 print("Initial: " + str(lanternfish))
+
+fishies = []
+for x in range(0,9):
+    fishies.append(0)
+
+for fish in lanternfish:
+    fishies[fish] += 1
+
 for days in range(0,257):
-    fishtoadd = []
-    total.append(len(lanternfish))
-    for fish in range(0,len(lanternfish)):
-        fishTick(lanternfish,fishtoadd,fish)
-    for add in range(len(fishtoadd)):
-        lanternfish.append(fishtoadd.pop())
-    #print("Day " + str(days+1) + ": " + str(lanternfish))
+    temptotal = 0
+    fishtoadd = 0
+    for fish in fishies:
+        temptotal += fish
+    total.append(temptotal) 
+    if fishies[0] > 0:
+        fishtoadd = fishies[0]
+        fishies[0] = 0
+    for y in range(1,len(fishies)):
+        if fishies[y] > 0:
+            fishies[y-1] = fishies[y]
+            fishies[y] = 0
+    
+    fishies[6] += fishtoadd
+    fishies[8] += fishtoadd
 
 print("Totals: " + str(total))
