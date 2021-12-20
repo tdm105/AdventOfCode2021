@@ -4,7 +4,7 @@ def split(str,chr):
     for x in range(len(chr),len(str)):
         if str[x-len(chr):x] == chr:
             newstr.append(str[lastloc:x-len(chr)])
-            lastloc = x+1
-    newstr.append(str[lastloc-1:])
+            lastloc = x
+    newstr.append(str[lastloc:])
     return newstr
     
