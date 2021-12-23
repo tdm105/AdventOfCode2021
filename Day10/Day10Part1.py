@@ -19,58 +19,74 @@ for x in input:
                 break
         elif checkstack[len(checkstack)-1] == '[':
             if y == len(x)-1:
+                print("Incomplete")
                 break
             elif x[y] == ']':
                 checkstack.pop()
             elif x[y] == ')':
+                print("Expected ], found )")
                 errorscore += 3
                 break
             elif x[y] == '}':
+                print("Expected ], found }")
                 errorscore += 1197
                 break
             elif x[y] == '>':
+                print("Expected ], found >")
                 errorscore += 25137
                 break
         elif checkstack[len(checkstack)-1] == '(':
             if y-1 == len(x)-1:
+                print("Incomplete")
                 break
             elif x[y] == ')':
                 checkstack.pop()
             elif x[y] == ']':
+                print("Expected ), found ]")
                 errorscore += 57
                 break
             elif x[y] == '}':
+                print("Expected ), found }")
                 errorscore += 1197
                 break
             elif x[y] == '>':
+                print("Expected ), found >")
                 errorscore += 25137
                 break
         elif checkstack[len(checkstack)-1] == '{':
             if y-1 == len(x)-1:
+                print("Incomplete")
                 break
             elif x[y] == '}':
                 checkstack.pop()
             elif x[y] == ')':
+                print("Expected }, found )")
                 errorscore += 3
                 break
             elif x[y] == ']':
+                print("Expected }, found ]")
                 errorscore += 57
                 break
             elif x[y] == '>':
+                print("Expected }, found >")
                 errorscore += 25137
                 break
         elif checkstack[len(checkstack)-1] == '<':
             if y-1 == len(x)-1:
+                print("Incomplete")
                 break
             elif x[y] == '>':
                 checkstack.pop()
             elif x[y] == ')':
+                print("Expected >, found )")
                 errorscore += 3
                 break
             elif x[y] == ']':
+                print("Expected >, found ]")
                 errorscore += 57
                 break
             elif x[y] == '}':
+                print("Expected >, found }")
                 errorscore += 1197
                 break
 
